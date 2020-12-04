@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  if selectedFile
+    h1 Selected File: #{selectedFile}
+    script(src=`js/${selectedFile}`)
+  else
+    h1 File not selected
+  label
+    select(onchange='window.location.href = `?file=${this.value}`')
+      option(disabled selected=(selectedFile === undefined)) Please select a file
+      each file in files
+        option(value=file selected=(selectedFile === file))= file
+
